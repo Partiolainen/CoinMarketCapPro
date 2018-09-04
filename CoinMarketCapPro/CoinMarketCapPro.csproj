@@ -4,12 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Partiolainen</Authors>
     <Company>Part</Company>
-    <Product>CoinMarketCap API Pro</Product>
-    <Description>CoinMarketCap API Pro</Description>
+    <Product>CoinMarketCap Pro API</Product>
+    <Description>CoinMarketCap Pro API</Description>
     <Copyright>Partiolainen</Copyright>
-    <PackageTags>CoinMarketCap API Pro</PackageTags>
+    <PackageTags>CoinMarketCap Pro API</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.0.1</Version>
+    <PackageReleaseNotes>CoinMarketCap Pro API</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

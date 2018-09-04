@@ -6,10 +6,10 @@
     <LangVersion>latest</LangVersion>
     <Version>1.0.0.0</Version>
     <Authors>Partiolainen</Authors>
-    <Description>CoinMarketCap API Pro Demo</Description>
+    <Description>CoinMarketCap Pro API Demo</Description>
     <Copyright>Partiolainen</Copyright>
-    <PackageTags>CoinMarketCap API Pro Demo</PackageTags>
-    <PackageReleaseNotes>CoinMarketCap API Pro Demo</PackageReleaseNotes>
+    <PackageTags>CoinMarketCap Pro API Demo</PackageTags>
+    <PackageReleaseNotes>CoinMarketCap Pro API Demo</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
