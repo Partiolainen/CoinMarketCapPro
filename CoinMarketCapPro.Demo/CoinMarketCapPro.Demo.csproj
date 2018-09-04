@@ -4,6 +4,12 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <Version>1.0.0.0</Version>
+    <Authors>Partiolainen</Authors>
+    <Description>CoinMarketCap API Pro Demo</Description>
+    <Copyright>Partiolainen</Copyright>
+    <PackageTags>CoinMarketCap API Pro Demo</PackageTags>
+    <PackageReleaseNotes>CoinMarketCap API Pro Demo</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
