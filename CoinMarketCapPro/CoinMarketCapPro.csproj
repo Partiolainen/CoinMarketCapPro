@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Partiolainen</Authors>
+    <Company>Part</Company>
+    <Product>CoinMarketCap API Pro</Product>
+    <Description>CoinMarketCap API Pro</Description>
+    <Copyright>Partiolainen</Copyright>
+    <PackageTags>CoinMarketCap API Pro</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
