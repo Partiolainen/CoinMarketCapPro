@@ -11,7 +11,8 @@ namespace CoinMarketCapPro.Demo
 	{
 		private static async Task Main()
 		{
-			var apikey = ""; // <-- Your API Key here   //File.ReadAllLines($"{Environment.CurrentDirectory}\\ApiKey.txt")[0];
+			//var apikey = ""; // <-- Your API Key here   
+			var apikey = System.IO.File.ReadAllLines($"{Environment.CurrentDirectory}\\ApiKey.txt")[0];
 
 			var client = new CoinMarketCapClient(ApiSchema.Sandbox, apikey);
 

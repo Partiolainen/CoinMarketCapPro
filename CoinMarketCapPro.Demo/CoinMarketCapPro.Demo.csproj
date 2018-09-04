@@ -15,11 +15,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ApiKey.txt" />
+    <ProjectReference Include="..\CoinMarketCapPro\CoinMarketCapPro.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoinMarketCapPro\CoinMarketCapPro.csproj" />
+    <None Update="ApiKey.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

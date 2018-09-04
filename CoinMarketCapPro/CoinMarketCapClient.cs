@@ -51,22 +51,22 @@ namespace CoinMarketCapPro
 
 		public async Task<CurrencyInfo> GetCurrencyInfoAsync(List<int> ids = null)
 		{
-			return await GetCurrencyInfoBase(ids);
+			return await GetCurrencyInfoBase(ids).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyInfo> GetCurrencyInfoAsync(int id)
 		{
-			return await GetCurrencyInfoBase(new List<int> {id});
+			return await GetCurrencyInfoBase(new List<int> {id}).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyInfo> GetCurrencyInfoAsync(List<string> symbols = null)
 		{
-			return await GetCurrencyInfoBase(null, symbols);
+			return await GetCurrencyInfoBase(null, symbols).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyInfo> GetCurrencyInfoAsync(string symbol = null)
 		{
-			return await GetCurrencyInfoBase(null, new List<string> {symbol});
+			return await GetCurrencyInfoBase(null, new List<string> {symbol}).ConfigureAwait(false);
 		}
 
 		private async Task<CurrencyInfo> GetCurrencyInfoBase(List<int> ids = null, List<string> symbols = null)
@@ -75,7 +75,7 @@ namespace CoinMarketCapPro
 				throw new CoinMarketCapException("At least one \"id\" or \"symbol\" is required");
 
 			var response = await Request<CurrencyInfo>("cryptocurrency/info",
-				new QueryParams(ids.ToQueryParam("id"), symbols.ToQueryParam("symbol")).FirstNotNullParameter());
+				new QueryParams(ids.ToQueryParam("id"), symbols.ToQueryParam("symbol")).FirstNotNullParameter()).ConfigureAwait(false);
 
 			return response;
 		}
@@ -83,7 +83,7 @@ namespace CoinMarketCapPro
 		public async Task<CurrencyMap> GetCurrencyMapAsync(ParamListingStatus listingstatus = ParamListingStatus.Active,
 			int? start = 1, int? limit = null, string symbol = null)
 		{
-			return await GetCurrencyMapAsync(listingstatus, start, limit, new List<string> {symbol});
+			return await GetCurrencyMapAsync(listingstatus, start, limit, new List<string> {symbol}).ConfigureAwait(false);
 		}
 
 
@@ -94,7 +94,7 @@ namespace CoinMarketCapPro
 				new QueryParams(listingstatus.ToQueryParam("listing_status"),
 					start.ToQueryParam("start"),
 					limit.ToQueryParam("limit"),
-					symbols.ToQueryParam("symbol")));
+					symbols.ToQueryParam("symbol"))).ConfigureAwait(false);
 
 			return response;
 		}
@@ -122,7 +122,7 @@ namespace CoinMarketCapPro
 			var response = await Request<CurrencyListings>("cryptocurrency/listings/latest",
 				new QueryParams(start.ToQueryParam("start"), limit.ToQueryParam("limit"), convert.ToQueryParam("convert"),
 					sort.ToQueryParam("sort"), sort_dir.ToQueryParam("sort_dir"),
-					cryptocurrency_type.ToQueryParam("cryptocurrency_type")));
+					cryptocurrency_type.ToQueryParam("cryptocurrency_type"))).ConfigureAwait(false);
 
 			return response;
 		}
@@ -131,25 +131,25 @@ namespace CoinMarketCapPro
 		public async Task<CurrencyMarketPairs> GetCurrencyMarketPairsAsync(int id, List<string> convert, int start = 1,
 			int limit = 100)
 		{
-			return await GetCurrencyMarketPairsBase(id, null, start, limit, convert);
+			return await GetCurrencyMarketPairsBase(id, null, start, limit, convert).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketPairs> GetCurrencyMarketPairsAsync(string symbol, List<string> convert, int start = 1,
 			int limit = 100)
 		{
-			return await GetCurrencyMarketPairsBase(null, symbol, start, limit, convert);
+			return await GetCurrencyMarketPairsBase(null, symbol, start, limit, convert).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketPairs> GetCurrencyMarketPairsAsync(int id, int start = 1, int limit = 100,
 			string convert = null)
 		{
-			return await GetCurrencyMarketPairsBase(id, null, start, limit, convert==null ? null : new List<string> {convert});
+			return await GetCurrencyMarketPairsBase(id, null, start, limit, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketPairs> GetCurrencyMarketPairsAsync(string symbol, int start = 1, int limit = 100,
 			string convert = null)
 		{
-			return await GetCurrencyMarketPairsBase(null, symbol, start, limit, convert==null ? null : new List<string> {convert});
+			return await GetCurrencyMarketPairsBase(null, symbol, start, limit, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		private async Task<CurrencyMarketPairs> GetCurrencyMarketPairsBase(int? id = null, string symbol = null,
@@ -163,7 +163,7 @@ namespace CoinMarketCapPro
 			if (convert == null || convert.Count == 0) convert = new List<string> {"USD"};
 			var response = await Request<CurrencyMarketPairs>("cryptocurrency/market-pairs/latest",
 				new QueryParams(new QueryParams(id.ToQueryParam("id"), symbol.ToQueryParam("symbol")).FirstNotNullParameter(),
-					start.ToQueryParam("start"), limit.ToQueryParam("limit"), convert.ToQueryParam("convert")));
+					start.ToQueryParam("start"), limit.ToQueryParam("limit"), convert.ToQueryParam("convert"))).ConfigureAwait(false);
 
 			return response;
 		}
@@ -173,7 +173,7 @@ namespace CoinMarketCapPro
 			List<string> convert = null)
 		{
 			return await GetCurrencyMarketOHLCVHistoricalBase(id, null, time_period, time_start, time_end, count, interval,
-				convert);
+				convert).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyOHLCV> GetCurrencyMarketOHLCVHistoricalAsync(string symbol, string time_period = "daily",
@@ -181,7 +181,7 @@ namespace CoinMarketCapPro
 			List<string> convert = null)
 		{
 			return await GetCurrencyMarketOHLCVHistoricalBase(null, symbol, time_period, time_start, time_end, count,
-				interval, convert);
+				interval, convert).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyOHLCV> GetCurrencyMarketOHLCVHistoricalAsync(int id, string time_period = "daily",
@@ -189,7 +189,7 @@ namespace CoinMarketCapPro
 			string convert = null)
 		{
 			return await GetCurrencyMarketOHLCVHistoricalBase(id, null, time_period, time_start, time_end, count, interval,
-				convert==null ? null : new List<string> {convert});
+				convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyOHLCV> GetCurrencyMarketOHLCVHistoricalAsync(string symbol, string time_period = "daily",
@@ -197,7 +197,7 @@ namespace CoinMarketCapPro
 			string convert = null)
 		{
 			return await GetCurrencyMarketOHLCVHistoricalBase(null, symbol, time_period, time_start, time_end, count,
-				interval, convert==null ? null : new List<string> {convert});
+				interval, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		private async Task<CurrencyOHLCV> GetCurrencyMarketOHLCVHistoricalBase(int? id = null, string symbol = null,
@@ -211,7 +211,7 @@ namespace CoinMarketCapPro
 				new QueryParams(new QueryParams(id.ToQueryParam("id"), symbol.ToQueryParam("symbol")).FirstNotNullParameter(),
 					time_period.ToQueryParam("time_period"), time_start.ToQueryParam("time_start"),
 					time_end.ToQueryParam("time_end"), count.ToQueryParam("count"), interval.ToQueryParam("interval"),
-					convert.ToQueryParam("convert")));
+					convert.ToQueryParam("convert"))).ConfigureAwait(false);
 
 			return response;
 		}
@@ -219,7 +219,7 @@ namespace CoinMarketCapPro
 		public async Task<CurrencyMarketQuotesHistorical> GetCurrencyMarketQuotesHistoricalAsync(int id, List<string> convert,
 			string time_start = null, string time_end = null, int count = 10, string interval = ParamInterval.M5)
 		{
-			return await GetCurrencyMarketQuotesHistoricalBase(id, null, time_start, time_end, count, interval, convert);
+			return await GetCurrencyMarketQuotesHistoricalBase(id, null, time_start, time_end, count, interval, convert).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketQuotesHistorical> GetCurrencyMarketQuotesHistoricalAsync(string symbol,
@@ -227,7 +227,7 @@ namespace CoinMarketCapPro
 			string time_start = null, string time_end = null, int count = 10, string interval = ParamInterval.M5
 		)
 		{
-			return await GetCurrencyMarketQuotesHistoricalBase(null, symbol, time_start, time_end, count, interval, convert);
+			return await GetCurrencyMarketQuotesHistoricalBase(null, symbol, time_start, time_end, count, interval, convert).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketQuotesHistorical> GetCurrencyMarketQuotesHistoricalAsync(int id,
@@ -235,7 +235,7 @@ namespace CoinMarketCapPro
 			string convert = null)
 		{
 			return await GetCurrencyMarketQuotesHistoricalBase(id, null, time_start, time_end, count, interval,
-				convert==null ? null : new List<string> {convert});
+				convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketQuotesHistorical> GetCurrencyMarketQuotesHistoricalAsync(string symbol,
@@ -243,7 +243,7 @@ namespace CoinMarketCapPro
 			string convert = null)
 		{
 			return await GetCurrencyMarketQuotesHistoricalBase(null, symbol, time_start, time_end, count, interval,
-				convert==null ? null : new List<string> {convert});
+				convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		private async Task<CurrencyMarketQuotesHistorical> GetCurrencyMarketQuotesHistoricalBase(int? id = null,
@@ -257,50 +257,50 @@ namespace CoinMarketCapPro
 				new QueryParams(new QueryParams(id.ToQueryParam("id"), symbol.ToQueryParam("symbol")).FirstNotNullParameter(),
 					time_start.ToQueryParam("time_start"),
 					time_end.ToQueryParam("time_end"), count.ToQueryParam("count"), interval.ToQueryParam("interval"),
-					convert.ToQueryParam("convert")));
+					convert.ToQueryParam("convert"))).ConfigureAwait(false);
 
 			return response;
 		}
 
 		public async Task<CurrencyMarketQuotes> GetCurrencyMarketQuotesAsync(List<int> ids, List<string> convert)
 		{
-			return await GetCurrencyMarketQuotesBase(ids, null, convert);
+			return await GetCurrencyMarketQuotesBase(ids, null, convert).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketQuotes> GetCurrencyMarketQuotesAsync(List<string> symbols, List<string> convert)
 		{
-			return await GetCurrencyMarketQuotesBase(null, symbols, convert);
+			return await GetCurrencyMarketQuotesBase(null, symbols, convert).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketQuotes> GetCurrencyMarketQuotesAsync(int id, List<string> convert)
 		{
-			return await GetCurrencyMarketQuotesBase(new List<int> {id}, null, convert);
+			return await GetCurrencyMarketQuotesBase(new List<int> {id}, null, convert).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketQuotes> GetCurrencyMarketQuotesAsync(string symbol, List<string> convert)
 		{
-			return await GetCurrencyMarketQuotesBase(null, new List<string> {symbol}, convert);
+			return await GetCurrencyMarketQuotesBase(null, new List<string> {symbol}, convert).ConfigureAwait(false);
 		}
 
 
 		public async Task<CurrencyMarketQuotes> GetCurrencyMarketQuotesAsync(List<int> ids, string convert = null)
 		{
-			return await GetCurrencyMarketQuotesBase(ids, null, convert==null ? null : new List<string> {convert});
+			return await GetCurrencyMarketQuotesBase(ids, null, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketQuotes> GetCurrencyMarketQuotesAsync(List<string> symbols, string convert = null)
 		{
-			return await GetCurrencyMarketQuotesBase(null, symbols, convert==null ? null : new List<string> {convert});
+			return await GetCurrencyMarketQuotesBase(null, symbols, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketQuotes> GetCurrencyMarketQuotesAsync(int id, string convert = null)
 		{
-			return await GetCurrencyMarketQuotesBase(new List<int> {id}, null, convert==null ? null : new List<string> {convert});
+			return await GetCurrencyMarketQuotesBase(new List<int> {id}, null, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<CurrencyMarketQuotes> GetCurrencyMarketQuotesAsync(string symbol, string convert = null)
 		{
-			return await GetCurrencyMarketQuotesBase(null, new List<string> {symbol}, convert==null ? null : new List<string> {convert});
+			return await GetCurrencyMarketQuotesBase(null, new List<string> {symbol}, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		private async Task<CurrencyMarketQuotes> GetCurrencyMarketQuotesBase(List<int> ids = null,
@@ -313,29 +313,29 @@ namespace CoinMarketCapPro
 			var response = await Request<CurrencyMarketQuotes>("cryptocurrency/quotes/latest",
 				new QueryParams(
 					new QueryParams(ids.ToQueryParam("id"), symbols.ToQueryParam("symbol")).FirstNotNullParameter(),
-					convert.ToQueryParam("convert")));
+					convert.ToQueryParam("convert"))).ConfigureAwait(false);
 
 			return response;
 		}
 
 		public async Task<ExchangeInfo> GetExchangeInfoAsync(int id)
 		{
-			return await GetExchangeInfoBase(new List<int> {id});
+			return await GetExchangeInfoBase(new List<int> {id}).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeInfo> GetExchangeInfoAsync(string slug)
 		{
-			return await GetExchangeInfoBase(null, new List<string> {slug});
+			return await GetExchangeInfoBase(null, new List<string> {slug}).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeInfo> GetExchangeInfoAsync(List<int> ids)
 		{
-			return await GetExchangeInfoBase(ids);
+			return await GetExchangeInfoBase(ids).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeInfo> GetExchangeInfoAsync(List<string> slugs)
 		{
-			return await GetExchangeInfoBase(null, slugs);
+			return await GetExchangeInfoBase(null, slugs).ConfigureAwait(false);
 		}
 
 		private async Task<ExchangeInfo> GetExchangeInfoBase(List<int> ids = null, List<string> slugs = null)
@@ -343,7 +343,7 @@ namespace CoinMarketCapPro
 			if ((ids ?? new List<int>()).Count == 0 && (slugs ?? new List<string>()).Count == 0)
 				throw new CoinMarketCapException("At least one \"id\" or \"slug\" is required");
 			var response = await Request<ExchangeInfo>("exchange/info",
-				new QueryParams(ids.ToQueryParam("id"), slugs.ToQueryParam("slug")).FirstNotNullParameter());
+				new QueryParams(ids.ToQueryParam("id"), slugs.ToQueryParam("slug")).FirstNotNullParameter()).ConfigureAwait(false);
 
 			return response;
 		}
@@ -353,7 +353,7 @@ namespace CoinMarketCapPro
 		{
 			var response = await Request<ExchangeMap>("exchange/map",
 				new QueryParams(listing_status.ToQueryParam("listing_status"), slugs.ToQueryParam("slug"),
-					start.ToQueryParam("start"), limit.ToQueryParam("limit")));
+					start.ToQueryParam("start"), limit.ToQueryParam("limit"))).ConfigureAwait(false);
 
 			return response;
 		}
@@ -376,7 +376,7 @@ namespace CoinMarketCapPro
 			SortBy sort = SortBy.Volume_24h, SortDirection sort_dir = SortDirection.Desc,
 			MarketType market_type = MarketType.Fees, string convert = null)
 		{
-			return await GetExchangeListingsAsync(convert==null ? null : new List<string> {convert}, start, limit, sort, sort_dir, market_type);
+			return await GetExchangeListingsAsync(convert==null ? null : new List<string> {convert}, start, limit, sort, sort_dir, market_type).ConfigureAwait(false);
 		}
 
 
@@ -387,7 +387,7 @@ namespace CoinMarketCapPro
 			if (convert == null || convert.Count == 0) convert = new List<string> {"USD"};
 			var response = await Request<ExchangeListings>("exchange/listings/latest",
 				new QueryParams(start.ToQueryParam("start"), limit.ToQueryParam("limit"), sort.ToQueryParam("sort"),
-					sort_dir.ToQueryParam("sort_dir"), market_type.ToQueryParam("market_type"), convert.ToQueryParam("convert")));
+					sort_dir.ToQueryParam("sort_dir"), market_type.ToQueryParam("market_type"), convert.ToQueryParam("convert"))).ConfigureAwait(false);
 
 			return response;
 		}
@@ -395,25 +395,25 @@ namespace CoinMarketCapPro
 		public async Task<ExchangeMarketPairs> GetExchangeMarketPairsAsync(int id, List<string> convert, int start = 1,
 			int limit = 100)
 		{
-			return await GetExchangeMarketPairsBase(id, null, start, limit, convert);
+			return await GetExchangeMarketPairsBase(id, null, start, limit, convert).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketPairs> GetExchangeMarketPairsAsync(string slug, List<string> convert, int start = 1,
 			int limit = 100)
 		{
-			return await GetExchangeMarketPairsBase(null, slug, start, limit, convert);
+			return await GetExchangeMarketPairsBase(null, slug, start, limit, convert).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketPairs> GetExchangeMarketPairsAsync(int id, int start = 1, int limit = 100,
 			string convert = null)
 		{
-			return await GetExchangeMarketPairsBase(id, null, start, limit, convert==null ? null : new List<string> {convert});
+			return await GetExchangeMarketPairsBase(id, null, start, limit, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketPairs> GetExchangeMarketPairsAsync(string slug, int start = 1, int limit = 100,
 			string convert = null)
 		{
-			return await GetExchangeMarketPairsBase(null, slug, start, limit, convert==null ? null : new List<string> {convert});
+			return await GetExchangeMarketPairsBase(null, slug, start, limit, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		private async Task<ExchangeMarketPairs> GetExchangeMarketPairsBase(int? id = null, string slug = null,
@@ -424,7 +424,7 @@ namespace CoinMarketCapPro
 			if (convert == null || convert.Count == 0) convert = new List<string> {"USD"};
 			var response = await Request<ExchangeMarketPairs>("exchange/market-pairs/latest",
 				new QueryParams(new QueryParams(id.ToQueryParam("id"), slug.ToQueryParam("slug")).FirstNotNullParameter(),
-					start.ToQueryParam("start"), limit.ToQueryParam("limit"), convert.ToQueryParam("convert")));
+					start.ToQueryParam("start"), limit.ToQueryParam("limit"), convert.ToQueryParam("convert"))).ConfigureAwait(false);
 
 			return response;
 		}
@@ -434,7 +434,7 @@ namespace CoinMarketCapPro
 			string convert = null)
 		{
 			return await ExchangeMarketQuotesHistoricalBase(id, null, time_start, time_end, count, interval,
-				convert==null ? null : new List<string> {convert});
+				convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketQuotesHistorical> ExchangeMarketQuotesHistoricalAsync(string slug,
@@ -442,20 +442,20 @@ namespace CoinMarketCapPro
 			string convert = null)
 		{
 			return await ExchangeMarketQuotesHistoricalBase(null, slug, time_start, time_end, count, interval,
-				convert==null ? null : new List<string> {convert});
+				convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketQuotesHistorical> ExchangeMarketQuotesHistoricalAsync(int id, List<string> convert,
 			string time_start = null, string time_end = null, int count = 10, string interval = ParamInterval.M5)
 		{
-			return await ExchangeMarketQuotesHistoricalBase(id, null, time_start, time_end, count, interval, convert);
+			return await ExchangeMarketQuotesHistoricalBase(id, null, time_start, time_end, count, interval, convert).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketQuotesHistorical> ExchangeMarketQuotesHistoricalAsync(string slug,
 			List<string> convert,
 			string time_start = null, string time_end = null, int count = 10, string interval = ParamInterval.M5)
 		{
-			return await ExchangeMarketQuotesHistoricalBase(null, slug, time_start, time_end, count, interval, convert);
+			return await ExchangeMarketQuotesHistoricalBase(null, slug, time_start, time_end, count, interval, convert).ConfigureAwait(false);
 		}
 
 		private async Task<ExchangeMarketQuotesHistorical> ExchangeMarketQuotesHistoricalBase(int? id = null,
@@ -469,49 +469,49 @@ namespace CoinMarketCapPro
 			var response = await Request<ExchangeMarketQuotesHistorical>("exchange/quotes/historical",
 				new QueryParams(new QueryParams(id.ToQueryParam("id"), slug.ToQueryParam("slug")).FirstNotNullParameter(),
 					time_start.ToQueryParam("time_start"), time_end.ToQueryParam("time_end"), count.ToQueryParam("count"),
-					interval.ToQueryParam("interval"), convert.ToQueryParam("convert")));
+					interval.ToQueryParam("interval"), convert.ToQueryParam("convert"))).ConfigureAwait(false);
 
 			return response;
 		}
 
 		public async Task<ExchangeMarketQuotes> ExchangeMarketQuotesAsync(int id, List<string> convert)
 		{
-			return await ExchangeMarketQuotesBase(new List<int> {id}, null, convert);
+			return await ExchangeMarketQuotesBase(new List<int> {id}, null, convert).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketQuotes> ExchangeMarketQuotesAsync(List<int> ids, List<string> convert)
 		{
-			return await ExchangeMarketQuotesBase(ids, null, convert);
+			return await ExchangeMarketQuotesBase(ids, null, convert).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketQuotes> ExchangeMarketQuotesAsync(string slug, List<string> convert)
 		{
-			return await ExchangeMarketQuotesBase(null, new List<string> {slug}, convert);
+			return await ExchangeMarketQuotesBase(null, new List<string> {slug}, convert).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketQuotes> ExchangeMarketQuotesAsync(List<string> slugs, List<string> convert)
 		{
-			return await ExchangeMarketQuotesBase(null, slugs, convert);
+			return await ExchangeMarketQuotesBase(null, slugs, convert).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketQuotes> ExchangeMarketQuotesAsync(int id, string convert = null)
 		{
-			return await ExchangeMarketQuotesBase(new List<int> {id}, null, convert==null ? null : new List<string> {convert});
+			return await ExchangeMarketQuotesBase(new List<int> {id}, null, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketQuotes> ExchangeMarketQuotesAsync(List<int> ids, string convert = null)
 		{
-			return await ExchangeMarketQuotesBase(ids, null, convert==null ? null : new List<string> {convert});
+			return await ExchangeMarketQuotesBase(ids, null, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketQuotes> ExchangeMarketQuotesAsync(string slug, string convert = null)
 		{
-			return await ExchangeMarketQuotesBase(null, new List<string> {slug}, convert==null ? null : new List<string> {convert});
+			return await ExchangeMarketQuotesBase(null, new List<string> {slug}, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		public async Task<ExchangeMarketQuotes> ExchangeMarketQuotesAsync(List<string> slugs, string convert = null)
 		{
-			return await ExchangeMarketQuotesBase(null, slugs, convert==null ? null : new List<string> {convert});
+			return await ExchangeMarketQuotesBase(null, slugs, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		private async Task<ExchangeMarketQuotes> ExchangeMarketQuotesBase(List<int> ids = null, List<string> slugs = null,
@@ -522,7 +522,7 @@ namespace CoinMarketCapPro
 			if (convert == null || convert.Count == 0) convert = new List<string> {"USD"};
 			var response = await Request<ExchangeMarketQuotes>("exchange/quotes/latest",
 				new QueryParams(new QueryParams(ids.ToQueryParam("id"), slugs.ToQueryParam("slug")).FirstNotNullParameter(),
-					convert.ToQueryParam("convert")));
+					convert.ToQueryParam("convert"))).ConfigureAwait(false);
 
 			return response;
 		}
@@ -534,7 +534,7 @@ namespace CoinMarketCapPro
 			if (convert == null || convert.Count == 0) convert = new List<string> {"USD"};
 			var response = await Request<GlobalMetricsQuotesHistorical>("global-metrics/quotes/historical",
 				new QueryParams(time_start.ToQueryParam("time_start"), time_end.ToQueryParam("time_end"),
-					count.ToQueryParam("count"), interval.ToQueryParam("interval"), convert.ToQueryParam("convert")));
+					count.ToQueryParam("count"), interval.ToQueryParam("interval"), convert.ToQueryParam("convert"))).ConfigureAwait(false);
 
 			return response;
 		}
@@ -543,7 +543,7 @@ namespace CoinMarketCapPro
 		{
 			if (convert == null || convert.Count == 0) convert = new List<string> {"USD"};
 			var response = await Request<GlobalMetricsQuotes>("global-metrics/quotes/latest",
-				convert.ToQueryParam("convert"));
+				convert.ToQueryParam("convert")).ConfigureAwait(false);
 
 			return response;
 		}
@@ -551,19 +551,19 @@ namespace CoinMarketCapPro
 		public async Task<ToolsPriceConversion> ToolsPriceConversionAsync(int id, double amount = 1.0, string time = null,
 			List<string> convert = null)
 		{
-			return await ToolsPriceConversionBase(amount, id, null, time, convert);
+			return await ToolsPriceConversionBase(amount, id, null, time, convert).ConfigureAwait(false);
 		}
 
 		public async Task<ToolsPriceConversion> ToolsPriceConversionAsync(string symbol, double amount = 1.0,
 			string time = null, List<string> convert = null)
 		{
-			return await ToolsPriceConversionBase(amount, null, symbol, time, convert);
+			return await ToolsPriceConversionBase(amount, null, symbol, time, convert).ConfigureAwait(false);
 		}
 
 		public async Task<ToolsPriceConversion> ToolsPriceConversionAsync(string symbol, double amount = 1.0,
 			string time = null, string convert = null)
 		{
-			return await ToolsPriceConversionBase(amount, null, symbol, time, convert==null ? null : new List<string> {convert});
+			return await ToolsPriceConversionBase(amount, null, symbol, time, convert==null ? null : new List<string> {convert}).ConfigureAwait(false);
 		}
 
 		private async Task<ToolsPriceConversion> ToolsPriceConversionBase(double amount = 1.0, int? id = null,
@@ -575,7 +575,7 @@ namespace CoinMarketCapPro
 			var response = await Request<ToolsPriceConversion>("tools/price-conversion",
 				new QueryParams(amount.ToQueryParam("amount"),
 					new QueryParams(id.ToQueryParam("id"), symbol.ToQueryParam("symbol")).FirstNotNullParameter(),
-					time.ToQueryParam("time"), convert.ToQueryParam("convert")));
+					time.ToQueryParam("time"), convert.ToQueryParam("convert"))).ConfigureAwait(false);
 
 			return response;
 		}
