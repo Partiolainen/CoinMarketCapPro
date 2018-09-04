@@ -10,6 +10,8 @@
     <Copyright>Partiolainen</Copyright>
     <PackageTags>CoinMarketCap Pro API Demo</PackageTags>
     <PackageReleaseNotes>CoinMarketCap Pro API Demo</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/Partiolainen/CoinMarketCapPro</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Partiolainen/CoinMarketCapPro</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
