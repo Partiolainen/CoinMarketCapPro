@@ -83,12 +83,12 @@ namespace CoinMarketCapPro
 		public async Task<CurrencyMap> GetCurrencyMapAsync(ParamListingStatus listingstatus = ParamListingStatus.Active,
 			int? start = 1, int? limit = null, string symbol = null)
 		{
-			return await GetCurrencyMapAsync(listingstatus, start, limit, new List<string> {symbol});
+			return await GetCurrencyMapAsync(symbol == null ? null : new List<string> {symbol}, listingstatus, start, limit);
 		}
 
 
-		public async Task<CurrencyMap> GetCurrencyMapAsync(ParamListingStatus listingstatus = ParamListingStatus.Active,
-			int? start = 1, int? limit = null, List<string> symbols = null)
+		public async Task<CurrencyMap> GetCurrencyMapAsync(List<string> symbols, ParamListingStatus listingstatus = ParamListingStatus.Active,
+			int? start = 1, int? limit = null)
 		{
 			var response = await Request<CurrencyMap>("cryptocurrency/map",
 				new QueryParams(listingstatus.ToQueryParam("listing_status"),
