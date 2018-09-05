@@ -29,13 +29,13 @@ namespace CoinMarketCapPro.Types.Response
         public string Slug { get; set; }
 
         [JsonProperty("circulating_supply")]
-        public int CirculatingSupply { get; set; }
+        public double? CirculatingSupply { get; set; }
 
         [JsonProperty("total_supply")]
-        public int TotalSupply { get; set; }
+        public double? TotalSupply { get; set; }
 
         [JsonProperty("max_supply")]
-        public int MaxSupply { get; set; }
+        public double? MaxSupply { get; set; }
 
         [JsonProperty("date_added")]
         public DateTime DateAdded { get; set; }

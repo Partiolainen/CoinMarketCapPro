@@ -11,7 +11,8 @@ namespace CoinMarketCapPro.Demo
 	{
 		private static async Task Main()
 		{
-			var apikey = ""; // <-- Your API Key here   //File.ReadAllLines($"{Environment.CurrentDirectory}\\ApiKey.txt")[0];
+			var apikey = ""; // <-- Your API Key here   
+			//var apikey = System.IO.File.ReadAllLines($"{Environment.CurrentDirectory}\\ApiKey.txt")[0];
 
 			var client = new CoinMarketCapClient(ApiSchema.Sandbox, apikey);
 
@@ -21,8 +22,7 @@ namespace CoinMarketCapPro.Demo
 			var b = await client.GetCurrencyInfoAsync(87);
 			$"Name of currency with id #87: {b.Data.FirstOrDefault().Value.Name}".ToConsoleNotify();
 
-			var c = await client.GetCurrencyMapAsync(ParamListingStatus.Active, 1, 20,
-				new List<string> {"BTC", "ETH", "ETC", "ZEC"});
+			var c = await client.GetCurrencyMapAsync(new List<string> { "BTC", "ETH", "ETC", "ZEC" }, ParamListingStatus.Active, 1, 20);
 			$"Slug of BTC, ETH, ETC and ZEC: {string.Join(", ", c.Data.Select(x=>x.Slug))}".ToConsoleNotify();
 
 			//Not implemented by CoinMarketCap
