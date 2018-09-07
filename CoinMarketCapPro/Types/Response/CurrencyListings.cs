@@ -42,7 +42,7 @@ namespace CoinMarketCapPro.Types.Response
 		[JsonProperty("price")]
 		public double? Price { get; set; }
 		[JsonProperty("volume_24h")]
-		public long? Volume24h { get; set; }
+		public double? Volume24h { get; set; }
 		[JsonProperty("percent_change_1h")]
 		public double? PercentChange1h { get; set; }
 		[JsonProperty("percent_change_24h")]
@@ -50,7 +50,7 @@ namespace CoinMarketCapPro.Types.Response
 		[JsonProperty("percent_change_7d")]
 		public double? PercentChange7d { get; set; }
 		[JsonProperty("market_cap")]
-		public long MarketCap { get; set; }
+		public double? MarketCap { get; set; }
 	}
 
 }
