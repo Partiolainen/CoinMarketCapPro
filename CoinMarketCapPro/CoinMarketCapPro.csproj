@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>Partiolainen</Authors>
     <Company>Part</Company>
     <Product>CoinMarketCap Pro API</Product>
@@ -9,7 +9,7 @@
     <Copyright>Partiolainen</Copyright>
     <PackageTags>CoinMarketCap Pro API</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.3.4</Version>
+    <Version>1.0.4.0</Version>
     <PackageReleaseNotes>CoinMarketCap Pro API</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/Partiolainen/CoinMarketCapPro</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Partiolainen/CoinMarketCapPro</RepositoryUrl>
