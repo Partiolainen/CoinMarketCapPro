@@ -313,7 +313,7 @@ namespace CoinMarketCapPro
 			var response = await Request<CurrencyMarketQuotes>("cryptocurrency/quotes/latest",
 				new QueryParams(
 					new QueryParams(ids.ToQueryParam("id"), symbols.ToQueryParam("symbol")).FirstNotNullParameter(),
-					convert.ToQueryParam("convert")));
+					convert.ToQueryParam("convert"), "true".ToQueryParam("skip_invalid")));
 
 			return response;
 		}

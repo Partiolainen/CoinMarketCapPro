@@ -44,7 +44,7 @@ namespace CoinMarketCapPro.Types.Response
         public int NumMarketPairs { get; set; }
 
         [JsonProperty("cmc_rank")]
-        public int CmcRank { get; set; }
+        public int? CmcRank { get; set; }
 
         [JsonProperty("last_updated")]
         public DateTime LastUpdated { get; set; }
