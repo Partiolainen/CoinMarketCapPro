@@ -9,7 +9,7 @@
     <Copyright>Partiolainen</Copyright>
     <PackageTags>CoinMarketCap Pro API</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4.0</Version>
+    <Version>1.0.4.1</Version>
     <PackageReleaseNotes>CoinMarketCap Pro API</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/Partiolainen/CoinMarketCapPro</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Partiolainen/CoinMarketCapPro</RepositoryUrl>
