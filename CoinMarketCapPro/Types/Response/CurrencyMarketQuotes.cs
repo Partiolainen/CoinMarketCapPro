@@ -38,7 +38,7 @@ namespace CoinMarketCapPro.Types.Response
         public double? MaxSupply { get; set; }
 
         [JsonProperty("date_added")]
-        public DateTime DateAdded { get; set; }
+        public DateTime? DateAdded { get; set; }
 
         [JsonProperty("num_market_pairs")]
         public int? NumMarketPairs { get; set; }
